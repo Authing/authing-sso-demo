@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Authing SSO Example</title>
+  </head>
+  <body>
+    <button id="btn-login">login</button>
+    <button id="btn-track-session">trackSession</button>
+    <button id="btn-logout">logout</button>
+    <script src="https://cdn.jsdelivr.net/npm/@authing/sso/dist/SSO.umd.min.js"></script>
+    <script>
+      let auth = new SSO({
+        appId: "5cded9bf4efab36f02fa666a",
+        appType: "oidc",
+        appDomain: "first-oidc-app.authing.cn"
+      });
+      let login = document.getElementById("btn-login");
+      let trackSession = document.getElementById("btn-track-session");
+      let logout = document.getElementById("btn-logout");
+      login.onclick = function() {
+        auth.login();
+      };
+      trackSession.onclick = async function() {
+        let res = await auth.trackSession();
+        alert(JSON.stringify(res));
+      };
+      logout.onclick = async function() {
+        let res = await auth.logout();
+        alert(JSON.stringify(res));
+      };
+    </script>
+  </body>
+</html>
