@@ -13,12 +13,12 @@
   <h1 id="h1-user-info" style="display: none;">用户信息</h1>
   <input type="button" value="登出" id="btn-logout" style="display: none;" />
   <pre id="user-info"></pre>
-  <script src="https://cdn.authing.co/packages/authing-sso/2.1.2/umd/index.min.js"></script>
+  <script src="https://cdn.authing.co/packages/authing-sso/2.1.17-alpha.5/umd/index.min.js"></script>
   <script>
     const auth = new AuthingSSO.AuthingSSO({
-      appId: '61c5647a69a08cc03381256d',
-      origin: 'https://user-pool-1.authing.cn',
-      redirectUri: 'http://localhost:3000/login/callback'
+      appId: 'appId',
+      origin: 'https://{应用面板域名}.authing.cn',
+      redirectUri: 'http://localhost:3001/login/callback'
     })
 
     window.onload = async function () {

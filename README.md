@@ -9,7 +9,7 @@ npm ci
 npm run start
 ```
 
-浏览器打开 localhost:3000 即可
+浏览器打开 localhost:3001 即可
 
 ## 开发教程
 

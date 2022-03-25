@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/Authing/authing-sso-demo#readme",
   "dependencies": {
-    "@authing/sso": "^2.1.15"
+    "@authing/sso": "^2.1.17-alpha.5"
   },
   "devDependencies": {
     "koa": "^2.13.4",
