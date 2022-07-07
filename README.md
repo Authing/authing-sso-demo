@@ -23,4 +23,4 @@
 
 ## 开发教程
 
-开发教程请参考：[使用 Authing 实现单点登录](https://docs.authing.cn/v2/reference/sdk-for-sso.html)。
+开发教程请参考：[使用 Authing 实现单点登录](https://docs.authing.cn/v2/reference/sdk-for-sso-spa.html)。
