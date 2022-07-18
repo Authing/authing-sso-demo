@@ -7,16 +7,13 @@ function App() {
     return new AuthingSPA({
       // 很重要，请仔细填写！
       // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
-      domain: 'bazooka.pre.authing.cn',
+      domain: 'enccibbmkpbhiman.pre.authing.cn',
 
       // 应用 ID
-      appId: '6258260e54e2afc798bc3147',
+      appId: '62c3b5aec67b1553af9de3f8',
 
       // 登录回调地址，需要在控制台『应用配置 - 登录回调 URL』中指定
-      redirectUri: 'https://localhost:80001',
-
-      // 登出回调地址，需要在控制台『应用配置 - 登出回调 URL』中指定
-      logoutRedirectUri: 'https://localhost:80001',
+      redirectUri: 'https://localhost:8001',
     });
   }, []);
 
@@ -27,6 +24,7 @@ function App() {
       console.log('redirect');
       sdk.handleRedirectCallback().then((res) => {
         setLoginState(res);
+        window.location.replace('/');
       });
     } else {
       console.log('normal');
@@ -35,11 +33,7 @@ function App() {
         if (res) {
           setLoginState(res);
         } else {
-          sdk.loginWithRedirect({
-            redirectUri: 'https://localhost:8001',
-            originalUri: 'https://localhost:8001',
-            forced: false,
-          });
+          sdk.loginWithRedirect();
         }
       });
     }
@@ -50,14 +44,37 @@ function App() {
       <h2>Website 2</h2>
       <div>
         <p>
-          Access Token: <code>{loginState?.accessToken}</code>
+          Access Token: <br />
+          {loginState && (
+            <textarea
+              cols={100}
+              rows={10}
+              readOnly
+              value={JSON.stringify(loginState?.accessToken, null, 2)}
+            ></textarea>
+          )}
         </p>
         <p>
-          User Info: <code>{JSON.stringify(loginState?.parsedIdToken)}</code>
+          User Info: <br />
+          {loginState && (
+            <textarea
+              cols={100}
+              rows={15}
+              readOnly
+              value={JSON.stringify(loginState?.parsedIdToken, null, 2)}
+            ></textarea>
+          )}
         </p>
         <p>
-          Access Token Info:
-          <code>{JSON.stringify(loginState?.parsedAccessToken)}</code>
+          Access Token Info:<br />
+          {loginState && (
+            <textarea
+              cols={100}
+              rows={15}
+              readOnly
+              value={JSON.stringify(loginState?.parsedAccessToken, null, 2)}
+            ></textarea>
+          )}
         </p>
         <p>
           Expire At: <code>{loginState?.expireAt}</code>

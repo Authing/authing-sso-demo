@@ -1,21 +1,25 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { AuthingSPA } from '@authing/spa-auth-sdk';
-import type { LoginState, UserInfo } from '@authing/spa-auth-sdk/dist/types/global';
+import type {
+  LoginState,
+  UserInfo,
+} from '@authing/spa-auth-sdk/dist/types/global';
 
 function App() {
   const sdk = useMemo(() => {
     return new AuthingSPA({
       // 很重要，请仔细填写！
       // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
-      domain: 'bazooka.pre.authing.cn',
+      // domain: 'bazooka.pre.authing.cn',
+      domain: 'enccibbmkpbhiman.pre.authing.cn',
 
       // 应用 ID
-      appId: '628225dccef85c3770d2f705',
+      appId: '62c3b5bd8950b50610ecbef1',
 
       // 登录回调地址，需要在控制台『应用配置 - 登录回调 URL』中指定
       redirectUri: 'https://localhost:8000',
     });
-  }, [])
+  }, []);
 
   const [loginState, setLoginState] = useState<LoginState | null>();
   const [userInfo, setUserInfo] = useState<UserInfo | null>();
@@ -29,17 +33,14 @@ function App() {
     sdk.loginWithRedirect();
   };
 
-  const getLoginState = useCallback(
-    async () => {
-      const state = await sdk.getLoginState();
-      setLoginState(state);
-    },
-    [sdk],
-  );
-  
+  const getLoginState = useCallback(async () => {
+    const state = await sdk.getLoginState();
+    setLoginState(state);
+  }, [sdk]);
+
   const getUserInfo = async () => {
     if (!loginState) {
-      alert("用户未登录");
+      alert('用户未登录');
       return;
     }
     const userInfo = await sdk.getUserInfo({
@@ -54,10 +55,11 @@ function App() {
 
   useEffect(() => {
     if (sdk.isRedirectCallback()) {
-      console.log("redirect");
-      sdk.handleRedirectCallback().then(res => {
+      console.log('redirect');
+      sdk.handleRedirectCallback().then((res) => {
         setLoginState(res);
-      })
+        window.location.replace('/');
+      });
     } else {
       getLoginState();
     }
@@ -82,13 +84,27 @@ function App() {
         <button onClick={getLoginState}>getLoginState</button>
       </p>
       <p>
-        <code>{JSON.stringify(loginState)}</code>
+        {loginState && (
+          <textarea
+            cols={100}
+            rows={20}
+            readOnly
+            value={JSON.stringify(loginState, null, 2)}
+          ></textarea>
+        )}
       </p>
       <p>
         <button onClick={getUserInfo}>getUserInfo</button>
       </p>
       <p>
-        <code>{JSON.stringify(userInfo)}</code>
+        {userInfo && (
+          <textarea
+            cols={100}
+            rows={15}
+            readOnly
+            value={JSON.stringify(userInfo, null, 2)}
+          ></textarea>
+        )}
       </p>
     </div>
   );
