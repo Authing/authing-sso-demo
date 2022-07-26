@@ -13,7 +13,7 @@
   <h1 id="h1-user-info" style="display: none;">用户信息</h1>
   <input type="button" value="登出" id="btn-logout" style="display: none;" />
   <pre id="user-info"></pre>
-  <script src="https://cdn.authing.co/packages/authing-sso/2.1.17-alpha.5/umd/index.min.js"></script>
+  <script src="https://cdn.authing.co/packages/authing-sso/2.1.17-alpha.8/umd/index.min.js"></script>
   <script>
     const auth = new AuthingSSO.AuthingSSO({
       appId: 'appId',
@@ -34,7 +34,13 @@
     }
 
     document.getElementById('btn-login').addEventListener('click', function () {
-      auth.login()
+      auth.login({
+        scope: 'openid profile email phone',
+        responseMode: 'fragment',
+        responseType: 'code token',
+        state: Math.random().toString(),
+        nonce: Math.random().toString()
+      })
     })
 
     document.getElementById('btn-logout').addEventListener('click', function () {
