@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { AuthingSPA } from "@authing/spa-auth-sdk";
+import { Authing } from "@authing/browser";
 
 export default {
   name: "App",
@@ -50,16 +50,16 @@ export default {
     };
   },
   created() {
-    this.sdk = new AuthingSPA({
+    this.sdk = new Authing({
       // 很重要，请仔细填写！
       // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
-      domain: "enccibbmkpbhiman.pre.authing.cn",
+      domain: "应用面板地址",
 
       // 应用 ID
-      appId: "62c3b5aec67b1553af9de3f8",
+      appId: "应用 ID",
 
       // 登录回调地址，需要在控制台『应用配置 - 登录回调 URL』中指定
-      redirectUri: "https://localhost:8001",
+      redirectUri: "登录回调地址",
     });
   },
   mounted() {
