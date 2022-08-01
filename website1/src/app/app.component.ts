@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { AuthingSPA } from '@authing/spa-auth-sdk';
+import { Authing } from '@authing/browser';
 import type {
   UserInfo,
   LoginState,
-} from '@authing/spa-auth-sdk/dist/types/global';
+} from '@authing/browser/dist/types/global';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ export class AppComponent {
   loginState: LoginState | null = null;
   userInfo: UserInfo | null = null;
 
-  private sdk = new AuthingSPA({
+  private sdk = new Authing({
     // 很重要，请仔细填写！
     // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
     domain: 'enccibbmkpbhiman.pre.authing.cn',
