@@ -1,6 +1,6 @@
-# authing-spa-auth-sdk-demo-react
+# authing-sso-demo-react
 
-以下指南将逐步引导你如何使用 Authing SPA Auth SDK，为你已有或新开发的 React 应用实现应用账号打通和单点登录，包括`登录`、`登出`、`展示用户信息`、`发起认证授权`等一系列认证能力。
+以下指南将逐步引导你如何使用 Authing Browser SDK，为你已有或新开发的 React 应用实现应用账号打通和单点登录，包括`登录`、`登出`、`展示用户信息`、`发起认证授权`等一系列认证能力。
 
 ## 创建自建应用
 
@@ -38,26 +38,26 @@
 
 ## 安装
 
-Authing SPA Auth SDK 支持通过包管理器安装、script 标签引入的方式的方式集成到你的前端业务软件。
+Authing Browser SDK 支持通过包管理器安装、script 标签引入的方式的方式集成到你的前端业务软件。
 
 ### 使用 NPM 安装
 
 ```shell
-$ npm install @authing/spa-auth-sdk
+$ npm install @authing/browser
 ```
 
 ### 使用 Yarn 安装
 
 ```shell
-$ yarn add @authing/spa-auth-sdk
+$ yarn add @authing/browser
 ```
 
 ### 使用 script 标签直接引入
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@authing/spa-auth-sdk@0.0.1-alpha1/dist/index.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@authing/browser"></script>
 <script>
-const sdk = new AuthingSPA({
+const sdk = new Authing({
   // 很重要，请仔细填写！
   // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
   domain: '认证域名',
@@ -89,12 +89,12 @@ const sdk = new AuthingSPA({
 
 ![](./doc-assets/sso-callback.png)
 
-为了使用 Authing SPA Auth SDK，你需要填写`应用 ID`、`认证域名`、`回调地址`等参数，如下示例：
+为了使用 Authing Browser SDK，你需要填写`应用 ID`、`认证域名`、`回调地址`等参数，如下示例：
 
 ```js
-import { AuthingSPA } from '@authing/spa-auth-sdk';
+import { Authing } from '@authing/browser';
 
-const sdk = new AuthingSPA({
+const sdk = new Authing({
   // 很重要，请仔细填写！
   // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
   domain: '认证域名',
@@ -106,7 +106,7 @@ const sdk = new AuthingSPA({
 
 ## 登录
 
-Authing SPA Auth SDK 可以向 Authing 发起认证授权请求，目前支持三种形式：
+Authing Browser SDK 可以向 Authing 发起认证授权请求，目前支持三种形式：
 
 1. 在当前窗口转到 Authing 托管的登录页；
 2. 弹出一个窗口，在弹出的窗口中加载 Authing 托管的登录页。
@@ -118,12 +118,12 @@ Authing SPA Auth SDK 可以向 Authing 发起认证授权请求，目前支持�
 
 ```tsx{22-27}
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { AuthingSPA } from '@authing/spa-auth-sdk';
-import type { LoginState } from '@authing/spa-auth-sdk/dist/types/global';
+import { Authing } from '@authing/browser';
+import type { LoginState } from '@authing/browser/dist/types/global';
 
 function App() {
   const sdk = useMemo(() => {
-    return new AuthingSPA({
+    return new Authing({
       // 很重要，请仔细填写！
       // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
       domain: '单点登录的“应用面板地址”',
@@ -213,12 +213,12 @@ const login = () => {
 
 ```tsx{22-28}
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { AuthingSPA } from '@authing/spa-auth-sdk';
-import type { LoginState } from '@authing/spa-auth-sdk/dist/types/global';
+import { Authing } from '@authing/browser';
+import type { LoginState } from '@authing/browser/dist/types/global';
 
 function App() {
   const sdk = useMemo(() => {
-    return new AuthingSPA({
+    return new Authing({
       // 很重要，请仔细填写！
       // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
       domain: '单点登录的“应用面板地址”',
@@ -295,12 +295,12 @@ const login = async () => {
 
 ```tsx{22-44}
 import React, { useEffect, useMemo, useState } from 'react';
-import { AuthingSPA } from '@authing/spa-auth-sdk';
-import type { LoginState } from '@authing/spa-auth-sdk/dist/types/global';
+import { Authing } from '@authing/browser';
+import type { LoginState } from '@authing/browser/dist/types/global';
 
 function App() {
   const sdk = useMemo(() => {
-    return new AuthingSPA({
+    return new Authing({
       // 很重要，请仔细填写！
       // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
       domain: '单点登录的“应用面板地址”',
@@ -363,12 +363,12 @@ export default App;
 
 ### 高级使用
 
-每次发起登录本质是访问一个 URL 地址，可以携带许多参数。Authing SPA Auth SDK 默认会使用缺省参数。如果你需要精细控制登录请求参数，可以参考本示例。
+每次发起登录本质是访问一个 URL 地址，可以携带许多参数。Authing Browser SDK 默认会使用缺省参数。如果你需要精细控制登录请求参数，可以参考本示例。
 
 ```js
-import { AuthingSPA } from '@authing/spa-auth-sdk';
+import { Authing } from '@authing/browser';
 
-const sdk = new AuthingSPA({
+const sdk = new Authing({
   // 很重要，请仔细填写！
   // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
   domain: '认证域名',
@@ -413,12 +413,12 @@ const sdk = new AuthingSPA({
 
 ```tsx{29-36}
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { AuthingSPA } from '@authing/spa-auth-sdk';
-import type { LoginState } from '@authing/spa-auth-sdk/dist/types/global';
+import { Authing } from '@authing/browser';
+import type { LoginState } from '@authing/browser/dist/types/global';
 
 function App() {
   const sdk = useMemo(() => {
-    return new AuthingSPA({
+    return new Authing({
       // 很重要，请仔细填写！
       // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
       domain: '单点登录的“应用面板地址”',
@@ -485,12 +485,12 @@ export default App;
 
 ```tsx{38-50}
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { AuthingSPA } from '@authing/spa-auth-sdk';
-import type { LoginState, UserInfo } from '@authing/spa-auth-sdk/dist/types/global';
+import { Authing } from '@authing/browser';
+import type { LoginState, UserInfo } from '@authing/browser/dist/types/global';
 
 function App() {
   const sdk = useMemo(() => {
-    return new AuthingSPA({
+    return new Authing({
       // 很重要，请仔细填写！
       // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
       domain: '单点登录的“应用面板地址”',
@@ -575,12 +575,12 @@ export default App;
 
 ```tsx{36-43}
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { AuthingSPA } from '@authing/spa-auth-sdk';
-import type { LoginState } from '@authing/spa-auth-sdk/dist/types/global';
+import { Authing } from '@authing/browser';
+import type { LoginState } from '@authing/browser/dist/types/global';
 
 function App() {
   const sdk = useMemo(() => {
-    return new AuthingSPA({
+    return new Authing({
       // 很重要，请仔细填写！
       // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
       domain: '单点登录的“应用面板地址”',
@@ -649,7 +649,7 @@ export default App;
 
 ## 资源
 
-- [Authing SPA Auth SDK Demo](https://github.com/Authing/authing-sso-demo/tree/feat-sso-v3-demo)
+- [Authing Browser SDK Demo](https://github.com/Authing/authing-sso-demo/tree/feat-sso-v3-demo)
 - [使用 Authing 实现单点登录](https://docs.authing.cn/v2/reference/sdk-for-sso-spa.html)。
 - [用户认证 SDK 所有功能](https://docs.authing.cn/v2/reference/sdk-for-node/authentication/)
 - [论坛社区](https://forum.authing.cn/)

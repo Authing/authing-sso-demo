@@ -19,10 +19,10 @@
     jsonpointer "^5.0.0"
     leven "^3.1.0"
 
-"@authing/spa-auth-sdk@^0.0.1-alpha1":
-  version "0.0.1-alpha1"
-  resolved "https://registry.npmjs.org/@authing/spa-auth-sdk/-/spa-auth-sdk-0.0.1-alpha1.tgz#4ae98b100d0d657b5d5db06c2cb70e6b1c74b799"
-  integrity sha512-nXJHwadYz44+ZMQ397VvsQhFQxe3rxh8M6GI3ykvMzUZQNak46JfoJtcn8zjQ4sVNd/2jyex3cQeotTNERRwdA==
+"@authing/browser@^0.0.1-alpha2":
+  version "0.0.1-alpha2"
+  resolved "https://registry.npmjs.org/@authing/browser/-/browser-0.0.1-alpha2.tgz#99850152e7852f12e89e1297c197ef5e38114ebc"
+  integrity sha512-80w07Fqo1FXTVYHDTCsZuC4n7dAotNY8V39wir77hFBChuqId83hPd6Qgcd08NvFVoF109eUD8d2i/9qZrIZGQ==
   dependencies:
     axios "^0.26.1"
 

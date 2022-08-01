@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { AuthingSPA } from '@authing/spa-auth-sdk';
-import type { LoginState } from '@authing/spa-auth-sdk/dist/types/global';
+import { Authing } from '@authing/browser';
+import type { LoginState } from '@authing/browser/dist/types/global';
 
 function App() {
   const sdk = useMemo(() => {
-    return new AuthingSPA({
+    return new Authing({
       // 很重要，请仔细填写！
       // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
       domain: 'enccibbmkpbhiman.pre.authing.cn',
