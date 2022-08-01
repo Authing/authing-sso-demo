@@ -8,7 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@authing/spa-auth-sdk": "^0.0.1-alpha1",
+    "@authing/browser": "^0.0.1-alpha2",
     "core-js": "^3.6.5",
     "vue": "^3.0.0"
   },

@@ -1,6 +1,6 @@
-# authing-spa-auth-sdk-demo-vue3
+# authing-sso-demo-vue3
 
-以下指南将逐步引导你如何使用 Authing SPA Auth SDK，为你已有或新开发的 Vue3 应用实现应用账号打通和单点登录，包括`登录`、`登出`、`展示用户信息`、`发起认证授权`等一系列认证能力。
+以下指南将逐步引导你如何使用 Authing Browser SDK，为你已有或新开发的 Vue3 应用实现应用账号打通和单点登录，包括`登录`、`登出`、`展示用户信息`、`发起认证授权`等一系列认证能力。
 
 ## 创建自建应用
 
@@ -38,26 +38,26 @@
 
 ## 安装
 
-Authing SPA Auth SDK 支持通过包管理器安装、script 标签引入的方式的方式集成到你的前端业务软件。
+Authing Browser SDK 支持通过包管理器安装、script 标签引入的方式的方式集成到你的前端业务软件。
 
 ### 使用 NPM 安装
 
 ```shell
-$ npm install @authing/spa-auth-sdk
+$ npm install @authing/browser
 ```
 
 ### 使用 Yarn 安装
 
 ```shell
-$ yarn add @authing/spa-auth-sdk
+$ yarn add @authing/browser
 ```
 
 ### 使用 script 标签直接引入
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@authing/spa-auth-sdk@0.0.1-alpha1/dist/index.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@authing/browser"></script>
 <script>
-const sdk = new AuthingSPA({
+const sdk = new Authing({
   // 很重要，请仔细填写！
   // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
   domain: "单点登录的'应用面板地址'",
@@ -89,12 +89,12 @@ const sdk = new AuthingSPA({
 
 ![](./doc-assets/sso-callback.png)
 
-为了使用 Authing SPA Auth SDK，你需要填写`应用 ID`、`认证域名`、`回调地址`等参数，如下示例：
+为了使用 Authing Browser SDK，你需要填写`应用 ID`、`认证域名`、`回调地址`等参数，如下示例：
 
 ```js
-import { AuthingSPA } from '@authing/spa-auth-sdk';
+import { Authing } from '@authing/browser';
 
-const sdk = new AuthingSPA({
+const sdk = new Authing({
   // 很重要，请仔细填写！
   // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
   domain: "单点登录的'应用面板地址'",
@@ -106,7 +106,7 @@ const sdk = new AuthingSPA({
 
 ## 登录
 
-Authing SPA Auth SDK 可以向 Authing 发起认证授权请求，目前支持三种形式：
+Authing Browser SDK 可以向 Authing 发起认证授权请求，目前支持三种形式：
 
 1. 在当前窗口转到 Authing 托管的登录页；
 2. 弹出一个窗口，在弹出的窗口中加载 Authing 托管的登录页。
@@ -135,12 +135,12 @@ Authing SPA Auth SDK 可以向 Authing 发起认证授权请求，目前支持�
 
 <script>
 import { defineComponent, onMounted, reactive, toRefs } from "vue";
-import { AuthingSPA } from "@authing/spa-auth-sdk";
+import { Authing } from "@authing/browser";
 
 export default defineComponent({
   name: "App",
   setup() {
-    const sdk = new AuthingSPA({
+    const sdk = new Authing({
       // 很重要，请仔细填写！
       // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
       domain: "单点登录的'应用面板地址'",
@@ -245,12 +245,12 @@ const login = () => {
 
 <script>
 import { defineComponent, onMounted, reactive, toRefs } from "vue";
-import { AuthingSPA } from "@authing/spa-auth-sdk";
+import { Authing } from "@authing/browser";
 
 export default defineComponent({
   name: "App",
   setup() {
-    const sdk = new AuthingSPA({
+    const sdk = new Authing({
       // 很重要，请仔细填写！
       // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
       domain: "单点登录的'应用面板地址'",
@@ -331,12 +331,12 @@ const login = async () => {
 
 <script>
 import { defineComponent, onMounted, reactive, toRefs } from "vue";
-import { AuthingSPA } from "@authing/spa-auth-sdk";
+import { Authing } from "@authing/browser";
 
 export default defineComponent({
   name: "App",
   setup() {
-    const sdk = new AuthingSPA({
+    const sdk = new Authing({
       // 很重要，请仔细填写！
       // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
       domain: "单点登录的'应用面板地址'",
@@ -395,12 +395,12 @@ export default defineComponent({
 
 ### 高级使用
 
-每次发起登录本质是访问一个 URL 地址，可以携带许多参数。Authing SPA Auth SDK 默认会使用缺省参数。如果你需要精细控制登录请求参数，可以参考本示例。
+每次发起登录本质是访问一个 URL 地址，可以携带许多参数。Authing Browser SDK 默认会使用缺省参数。如果你需要精细控制登录请求参数，可以参考本示例。
 
 ```js
-import { AuthingSPA } from "@authing/spa-auth-sdk";
+import { Authing } from "@authing/browser";
 
-const sdk = new AuthingSPA({
+const sdk = new Authing({
   // 很重要，请仔细填写！
   // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
   domain: "单点登录的'应用面板地址'",
@@ -461,12 +461,12 @@ const sdk = new AuthingSPA({
 
 <script>
 import { defineComponent, onMounted, reactive, toRefs } from "vue";
-import { AuthingSPA } from "@authing/spa-auth-sdk";
+import { Authing } from "@authing/browser";
 
 export default defineComponent({
   name: "App",
   setup() {
-    const sdk = new AuthingSPA({
+    const sdk = new Authing({
       // 很重要，请仔细填写！
       // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
       domain: "单点登录的'应用面板地址'",
@@ -568,12 +568,12 @@ export default defineComponent({
 
 <script>
 import { defineComponent, onMounted, reactive, toRefs } from "vue";
-import { AuthingSPA } from "@authing/spa-auth-sdk";
+import { Authing } from "@authing/browser";
 
 export default defineComponent({
   name: "App",
   setup() {
-    const sdk = new AuthingSPA({
+    const sdk = new Authing({
       // 很重要，请仔细填写！
       // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
       domain: "单点登录的'应用面板地址'",
@@ -667,12 +667,12 @@ export default defineComponent({
 
 <script>
 import { defineComponent } from "vue";
-import { AuthingSPA } from "@authing/spa-auth-sdk";
+import { Authing } from "@authing/browser";
 
 export default defineComponent({
   name: "App",
   setup() {
-    const sdk = new AuthingSPA({
+    const sdk = new Authing({
       // 很重要，请仔细填写！
       // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
       domain: "单点登录的'应用面板地址'",

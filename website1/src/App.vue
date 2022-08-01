@@ -40,22 +40,21 @@
 
 <script>
 import { defineComponent, onMounted, reactive, toRefs } from "vue";
-import { AuthingSPA } from "@authing/spa-auth-sdk";
+import { Authing } from "@authing/browser";
 
 export default defineComponent({
   name: "App",
   setup() {
-    const sdk = new AuthingSPA({
+    const sdk = new Authing({
       // 很重要，请仔细填写！
       // 如果应用开启 SSO，这儿就要写单点登录的“应用面板地址”；否则填写应用的“认证地址”。
-      // domain: 'bazooka.pre.authing.cn',
-      domain: "enccibbmkpbhiman.pre.authing.cn",
+      domain: "应用面板地址",
 
       // 应用 ID
-      appId: "62c3b5bd8950b50610ecbef1",
+      appId: "应用 ID",
 
       // 登录回调地址，需要在控制台『应用配置 - 登录回调 URL』中指定
-      redirectUri: "https://localhost:8000",
+      redirectUri: "登录回调地址",
     });
 
     const state = reactive({
