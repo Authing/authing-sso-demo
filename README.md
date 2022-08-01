@@ -11,7 +11,7 @@
 - 应用名称：你的应用名称；
 - 认证地址：选择一个二级域名，必须为合法的域名格式，例如 `my-spa-app`；
 
-![](./doc-assets/sso-create-app-2.png)
+![](./doc-assets/sso-create-app.png)
 
 
 ## 配置单点登录
