@@ -9,24 +9,25 @@
   <a href="https://opensource.org/licenses/MIT" target="_blank"><img src="https://img.shields.io/badge/License-MIT-success" alt="License"></a>
 </div>
 
-**English** | [简体中文](./README.zh-CN.md)
+**简体中文** | [English](./README.md)
 
-## Introduction
+## 简介
 
-Implement SSO using Authing.
+使用 Authing 实现 SSO。
 
-## Start service
+
+## 运行此程序
 
 ``` shell
 npm ci
 npm run start
 ```
 
-The browser can open `http://localhost:3001`
+浏览器打开`http://localhost:3001`即可
 
-## Tutorial
+## 开发教程
 
-For the development tutorial, please refer to: [Using Authing to implement single sign-on](https://docs.authing.cn/v2/en/reference/sdk-for-sso.html).
+开发教程请参考：[使用 Authing 实现单点登录](https://docs.authing.cn/v2/reference/sdk-for-sso.html)。
 
 
 ## License
